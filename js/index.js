@@ -11,7 +11,11 @@ const destImg = document.querySelector(".content-destination img");
 
 // console.log(headerh1);
 
-
+navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+    });
+})
 
 
 window.addEventListener("load", () =>{
@@ -37,7 +41,7 @@ window.addEventListener("scroll",(e) => {
 
     let posSet = Math.ceil(window.scrollY/200);
     let ran = Math.floor(Math.random()*5);
-    console.log(ran);
+    // console.log(ran);
     // console.log(posSet);
     section.forEach(sec => {
         sec.style.backgroundColor = colors[ran];
@@ -46,8 +50,21 @@ window.addEventListener("scroll",(e) => {
 
 
 document.addEventListener("keydown", (e)=>{
-    headerh1.style.textAlign = "right";
-    console.log(e)
+    
+    // console.log(e);
+    if(e.key == "c"){
+        headerh1.style.textAlign = "center";
+    }
+    if(e.key == "r"){
+        headerh1.style.textAlign = "right";
+    } 
+    if(e.key == "l"){
+        headerh1.style.textAlign = "left";
+    } 
+    
+    ///Was trying to do an change if any key was pressed it will cycle over each text
+    //align position.
+    
 });
 
 
@@ -63,5 +80,27 @@ sectionImgs.forEach(sec => {
 });
 
 
-console.log(destImg);
+// console.log(destImg);
 
+let rotation = 0;
+destImg.addEventListener("wheel", (e) => {
+    // console.log(e.deltaY);
+
+    if(e.deltaY == -100){
+        destImg.style.transform = `rotate(${rotation}deg)`;
+        rotation++;
+    } else {
+        destImg.style.transform = `rotate(${rotation}deg)`;
+        rotation--;
+    }
+
+    if (rotation >= 360 || rotation <= -360){
+        rotation = 0;
+    }
+    e.preventDefault();
+});
+
+
+window.addEventListener("drag", (e)=>{
+    console.log(e);
+})

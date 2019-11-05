@@ -1,19 +1,25 @@
 // Your code goes here
 let logoHeading = document.querySelector(".logo-heading");
+let navContainer = document.querySelector(".nav-container");
 let navLinks = document.querySelectorAll(".nav-link");
 let introImg = document.querySelector(".intro img");
-const section = document.querySelectorAll("section");
+const para = document.querySelectorAll("p");
 const headerh1 = document.querySelector(".intro h2");
 const buttons = document.querySelectorAll(".btn");
 const sectionImgs = document.querySelectorAll(".img-content");
 const destImg = document.querySelector(".content-destination img");
-
-
+const dest = document.querySelectorAll(".destination");
 // console.log(headerh1);
 
+navContainer.addEventListener("click", () =>{
+    logoHeading.textContent = "Fun Bus";
+})
 navLinks.forEach(link => {
     link.addEventListener("click", e => {
+        //prevents from opening link.
         e.preventDefault();
+        //prevent action from event of click on the navContainer.
+        e.stopPropagation();
     });
 })
 
@@ -43,8 +49,8 @@ window.addEventListener("scroll",(e) => {
     let ran = Math.floor(Math.random()*5);
     // console.log(ran);
     // console.log(posSet);
-    section.forEach(sec => {
-        sec.style.backgroundColor = colors[ran];
+    para.forEach(p => {
+        p.style.backgroundColor = colors[ran];
     })
 });
 
@@ -100,7 +106,17 @@ destImg.addEventListener("wheel", (e) => {
     e.preventDefault();
 });
 
+buttons.forEach(button => {
+    button.addEventListener("mouseleave", () => {
+        alert("Wait, you have to press it.")
+    })
+});
 
-window.addEventListener("drag", (e)=>{
-    console.log(e);
-})
+console.log(dest);
+
+dest.forEach(sec => {
+    
+    sec.addEventListener("drag", ()=>{
+    console.log(sec);
+    });
+});
